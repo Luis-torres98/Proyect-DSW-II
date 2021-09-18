@@ -1,0 +1,122 @@
+body{
+    background-color: gray;
+    width: 1110px;
+    margin: 0 auto;
+
+    div{
+        background-color: white;
+    }
+  
+    h2{
+        font-family: montserratmedium;
+        font-size: 26px;
+    }
+}
+header{
+        
+	font-family: montserratlight;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+}
+.p1{
+    color: gray;
+}
+.articulos1{
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+    padding-top: 25px;
+}
+.izquierda,.centro,.derecha{
+    border: 1px solid gray;
+    width: 22%;
+    border-radius: 13px;
+}
+.izquierda{
+    padding: 10px;
+    margin-left: 82px;
+}
+.centro{
+    padding: 10px;
+}
+.derecha{
+    padding: 10px;
+    margin-right: 82px;
+}
+.img1{
+    padding-left: 90px;
+}
+.img2{
+    padding-left: 91px;
+}
+.img3{
+    padding-left: 89px;
+}
+.p2,.p3,.p4{
+    text-align: center;
+    color: cadetblue;
+}
+h3{
+    text-align: center;
+    color: cadetblue;
+}
+.articulos2{
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.articulos3{
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+    padding-top: 40px;
+}
+.orden1,.orden2{
+    display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+    width: 35%;
+}
+.h3{
+    color: black;
+}
+.a1,.a2,.a3{
+    border:3px solid gray;
+    padding: 4px;
+    border-radius:13px;
+    width: 26%;
+}
+.a4,.a5,.a6{
+    border:3px solid gray;
+    padding: 4px;
+    border-radius:13px;
+}
+.p22{
+    padding-left: 6px;
+}
+.p33{
+    padding-left: 12px;
+}
+.i1{
+    padding-left: 20px;
+}
+.i2{
+    padding-left: 17.5px;
+}
+.i3{
+    padding-left: 17.5px;
+}
+.i4{
+    padding-left: 13px;
+}
+.i5{
+    padding-left: 17px;
+}
+.i6{
+    padding-left: 6px;
+}
+
+footer{
+	text-align: center;
+}
