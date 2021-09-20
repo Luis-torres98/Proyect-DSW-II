@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-reservas',
@@ -6,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./reservas.component.scss'],
 })
 export class ReservasComponent implements OnInit {
-	constructor() {}
+	constructor( private _router : Router) {}
 
 	ngOnInit(): void {}
 
-	alerta() {
-		console.log("se clikeo!!");
-		let btn = document.getElementsByClassName('btn-red')[0] as HTMLElement;
-		btn.style.background= "blue";
+	navigate() {
+	
+		this._router.navigate(['/edit-reserve'])
 	}
 }
