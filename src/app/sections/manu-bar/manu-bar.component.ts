@@ -16,7 +16,7 @@ export class ManuBarComponent implements OnInit {
 			{
 				label: 'Inicio',
 				icon: 'pi pi-fw pi-pencil',
-				routerLink: '/'
+				routerLink: 'home'
 				// items: [
 				// 	{ label: 'Delete', icon: 'pi pi-fw pi-trash' },
 				// 	{ label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
@@ -33,6 +33,15 @@ export class ManuBarComponent implements OnInit {
 					{ label: 'Reservas', routerLink: 'reservas' },
 					{ label: 'Reservar Ahora', routerLink: 'reserve-now' },
 				],
+			},
+			{
+				label: 'Log Out',
+				// icon: 'pi pi-fw pi-pencil',
+				routerLink: '/'
+				// items: [
+				// 	{ label: 'Delete', icon: 'pi pi-fw pi-trash' },
+				// 	{ label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
+				// ],
 			},
 			
 		];

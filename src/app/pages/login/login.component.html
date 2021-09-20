@@ -1,0 +1,26 @@
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 class="active underlineHover" (click)="signIn()"> Sign In </h2>
+    <h2 class="inactive underlineHover" (click)="signUp()">Sign Up </h2>
+    <div class="fadeIn first"></div>
+    <div *ngIf="singIn">
+      <form>
+        <input class="fadeIn second" id="login" type="text" name="login" placeholder="login">
+        <input class="fadeIn third" id="password" type="text" name="login" placeholder="password">
+        <input class="fadeIn fourth" type="submit" value="Log In">
+      </form>
+      <div id="formFooter"><a class="underlineHover" href="">Forgot Password?</a></div>
+    </div>
+    <div *ngIf="singUp">
+      <form>
+        <input class="fadeIn second" id="login" type="text" name="login" placeholder="Name">
+        <input class="fadeIn second" id="login" type="text" name="login" placeholder="Last name">
+        <input class="fadeIn second" id="login" type="text" name="login" placeholder="Email">
+        <input class="fadeIn third" id="password" type="text" name="login" placeholder="Password">
+        <input class="fadeIn third" id="password" type="text" name="login" placeholder="Confirm password">
+        <input class="fadeIn fourth" type="submit" value="Sing In">
+      </form>
+    </div>
+  </div>
+</div>
