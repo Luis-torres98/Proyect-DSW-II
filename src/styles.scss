@@ -2,5 +2,12 @@
 body{
 	font-family: var(--font-family);
 	background-color: var(--surface-d);
+	margin: 0;
 }
 
+html {
+	box-sizing: border-box;
+  }
+  *, *:before, *:after {
+	box-sizing: inherit;
+  }

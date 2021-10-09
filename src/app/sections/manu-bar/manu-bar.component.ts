@@ -14,35 +14,28 @@ export class ManuBarComponent implements OnInit {
 	ngOnInit(): void {
 		this.items = [
 			{
-				label: 'Inicio',
+				label: 'Home',
 				icon: 'pi pi-fw pi-pencil',
-				routerLink: 'home'
-				// items: [
-				// 	{ label: 'Delete', icon: 'pi pi-fw pi-trash' },
-				// 	{ label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
-				// ],
-			},
-			{
-				label: 'Reservar tu cita',
-				items: [
-					// {
-					// 	label: 'New',
-					// 	icon: 'pi pi-fw pi-plus',
-					// 	items: [{ label: 'Project' }, { label: 'Other' }],
-					// },
-					{ label: 'Reservas', routerLink: 'reservas' },
-					{ label: 'Reservar Ahora', routerLink: 'reserve-now' },
-				],
-			},
-			{
-				label: 'Log Out',
-				// icon: 'pi pi-fw pi-pencil',
 				routerLink: '/'
 				// items: [
 				// 	{ label: 'Delete', icon: 'pi pi-fw pi-trash' },
 				// 	{ label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
 				// ],
 			},
+			{
+				label: 'Login',
+				routerLink: 'login'
+				// items: [
+				// 	// {
+				// 	// 	label: 'New',
+				// 	// 	icon: 'pi pi-fw pi-plus',
+				// 	// 	items: [{ label: 'Project' }, { label: 'Other' }],
+				// 	// },
+				// 	// { label: 'Reservas', routerLink: 'reservas' },
+				// 	// { label: 'Reservar Ahora', routerLink: 'reserve-now' },
+				// ],
+			},
+			
 			
 		];
 	}

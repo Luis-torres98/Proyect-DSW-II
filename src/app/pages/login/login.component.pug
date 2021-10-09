@@ -5,10 +5,12 @@
 		.fadeIn.first
 		div(*ngIf="singIn")
 			//- img#icon()
-			form
-				input#login.fadeIn.second(type='text' name='login' placeholder='login')
-				input#password.fadeIn.third(type='text' name='login' placeholder='password')
+			form([formGroup]="loginForm", (ngSubmit)="onLogin(loginForm.value)")
+				input#login.fadeIn.second(type='text' formControlName="usuario" placeholder='login')
+				input#password.fadeIn.third(type='password' formControlName="password" placeholder='password')
 				input.fadeIn.fourth(type='submit' value='Log In')
+			div(*ngIf="password")
+				p.userPassword Usuario o contraseña incorrectos
 			#formFooter
 				a.underlineHover(href='') Forgot Password?
 		div(*ngIf="singUp")

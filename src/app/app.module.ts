@@ -14,6 +14,7 @@ import { SectionsModule } from './sections/sections.module';
 		PagesModule, 
 		RouterModule.forRoot(ROUTES),
 		SectionsModule,
+		
 	],
 	providers: [],
 	bootstrap: [AppComponent],
