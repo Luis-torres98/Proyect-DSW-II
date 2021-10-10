@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComunicateComponentsService } from '../../comunicate-components.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor( 
+	  private _comunication : ComunicateComponentsService
+   ) { }
 
   ngOnInit(): void {
+	  this._comunication.onChangeUser().subscribe(e=>{
+		  console.log("Usuarios desde landing", e);
+		  
+	  });
   }
 
 }

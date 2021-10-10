@@ -1,8 +1,10 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/service.service';
 import { Router } from '@angular/router';
+import { User } from 'src/interfaces/IUser';
+import { ComunicateComponentsService } from 'src/app/comunicate-components.service';
 
 @Component({
 	selector: 'app-login',
@@ -16,12 +18,19 @@ export class LoginComponent implements OnInit {
 	resultado = [];
 	password = false;
 
+
+
 	loginForm = new FormGroup({
 		usuario: new FormControl('', Validators.required),
 		password: new FormControl('', Validators.required),
 	});
 
-	constructor(private _elem: ElementRef, private srv: ServiceService, private router : Router) {}
+	constructor(
+		private _elem: ElementRef, 
+		private srv: ServiceService, 
+		private router: Router,
+		private _comunications : ComunicateComponentsService
+	) {}
 
 	ngOnInit(): void {}
 
@@ -50,21 +59,28 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin(form: any) {
-		
-
-		// this.srv.loginByEmail(form).subscribe(data => {
-			// console.log(data);
-
-			// if (data[0].user==form.usuario && data[0].password==form.password ) {
-			// 	console.log("usuario correcto");
-				this.router.navigate(['home']);
+		this.srv.loginByEmail().subscribe(data => {
+			
+			data.forEach(user=>{
+				if (user.username === this.loginForm.value.usuario 
+					&& user.password === this.loginForm.value.password ) {
+					
+					this._comunications.userCurrent(user);
+					
+					this.router.navigate(['home']);
+					return
+					
+				}else{
+					console.log("usuario incorrecto");
+					this.password = true;
+					return
+					
+				}
 				
-			// }else{
-			// 	console.log("usuario incorrecto");
-			// 	this.password = true;
-				
-			// }
-		// });
+			})
+			
 
+		});
 	}
 }
+

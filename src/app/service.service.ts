@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ILogin } from './interfaces/ILogin';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/IUser';
 
 
 @Injectable({
@@ -9,13 +10,13 @@ import { Observable } from 'rxjs';
 })
 export class ServiceService {
 
-	 url = 'http://localhost:8080/personas' 
+	 url = 'https://citasmedicas2021.herokuapp.com' 
 	
 	constructor(private _http: HttpClient) {}
 
-	loginByEmail(form : ILogin):Observable<any>{
-		let dir = `${this.url}/listar`
+	loginByEmail():Observable<User[]>{
+		let dir = `${this.url}/api/usuario`
 
-		return this._http.get(dir);
+		return this._http.get<User[]>(dir);
 	}
 }
