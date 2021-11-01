@@ -18,19 +18,12 @@ export class LoginComponent implements OnInit {
 	resultado = [];
 	password = false;
 
-
-
 	loginForm = new FormGroup({
 		usuario: new FormControl('', Validators.required),
 		password: new FormControl('', Validators.required),
 	});
 
-	constructor(
-		private _elem: ElementRef, 
-		private srv: ServiceService, 
-		private router: Router,
-		private _comunications : ComunicateComponentsService
-	) {}
+	constructor(private _elem: ElementRef, private srv: ServiceService, private router: Router, private _comunications: ComunicateComponentsService) {}
 
 	ngOnInit(): void {}
 
@@ -59,28 +52,39 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin(form: any) {
-		this.srv.loginByEmail().subscribe(data => {
-			
-			data.forEach(user=>{
-				if (user.username === this.loginForm.value.usuario 
-					&& user.password === this.loginForm.value.password ) {
-					
-					this._comunications.userCurrent(user);
-					
-					this.router.navigate(['home']);
-					return
-					
-				}else{
-					console.log("usuario incorrecto");
-					this.password = true;
-					return
-					
-				}
-				
-			})
-			
+		// this.srv.loginByEmail().subscribe(data => {
 
+		// 	data.forEach(user=>{
+		// 		if (user.username === this.loginForm.value.usuario
+		// 			&& user.password === this.loginForm.value.password ) {
+
+		// 			this._comunications.userCurrent(user);
+
+		// 			this.router.navigate(['home']);
+		// 			return
+
+		// 		}else{
+		// 			console.log("usuario incorrecto");
+		// 			this.password = true;
+		// 			return
+
+		// 		}
+
+		// 	})
+
+		// });
+
+		console.log(form);
+
+		this.srv.login(form).subscribe(resp => {
+			if (resp != '') {
+				this._comunications.userCurrent(resp);
+				this.router.navigate(['dashboard']);
+
+			} else {
+				this.password = true;
+				return;
+			}
 		});
 	}
 }
-

@@ -1,0 +1,74 @@
+
+<div class="tabla d-flex justify-content-between">
+  <h1>Citas</h1>
+  <button class="btn btn-primary" type="button" (click)="showAddCategoryModal()">Agregar Cita</button>
+</div>
+<div class="tabla">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Fecha Registro</th>
+        <th scope="col">Comentario</th>
+        <th scope="col">Fecha cita</th>
+        <th scope="col">Sede</th>
+        <th scope="col">Paciente</th>
+        <th scope="col">Area</th>
+        <th scope="col">Hora</th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of citas">
+        <th scope="row">{{cita.id_cita}}</th>
+        <td>{{cita.fecha_registro}}</td>
+        <td>{{cita.comentario}}</td>
+        <td>{{cita.fecha_cita}}</td>
+        <td>{{cita.sede.nombre_sede	}}</td>
+        <td>{{cita.paciente.usuario.nombre}} {{cita.paciente.usuario.apellidos}}</td>
+        <td>{{cita.area.nombre_area}}</td>
+        <td>{{cita.hora.rango_horas}}</td>
+        <td> <i class="fas fa-edit" (click)="editCita(cita)"></i><i class="fas fa-trash-alt" (click)="deleteCita(cita.id_cita)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div><app-backdrop *ngIf="showModal">			
+<app-modal-wrapper title="Agregar cita">
+<form action="" [formGroup]="formCitas">
+<div>
+<label for="cita_comentario">Comentario</label>
+<input #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="comentario" />
+</div>
+<div>
+<label for="">Fecha de cita</label>
+<input type="date" id=""  formControlName="fecha_cita"/>
+</div>
+<div>
+<label for="">Sede</label>
+<select name="" formControlName="sede">
+  <option value="">Seleccione Sedes </option>
+  <option [value]="sede.id_sede" *ngFor="let sede of sedes">{{sede.nombre_sede}}   </option>
+</select></div>
+<div>
+<label for="">Paciente</label>
+<select name="" formControlName="paciente">
+  <option value="">Seleccione Paciente </option>
+  <option [value]="paciente.id_paciente" *ngFor="let paciente of pacientes">{{paciente.usuario.nombre}} {{paciente.usuario.apellidos}}   </option>
+</select></div>
+<div>
+<label for="">Area</label>
+<select name="" formControlName="area">
+  <option value="">Seleccione Areas </option>
+  <option [value]="area.id_area" *ngFor="let area of areas">{{area.nombre_area}}   </option>
+</select></div>
+<div>
+<label for="">Hora</label>
+<select name="" formControlName="hora">
+  <option value="">Seleccione Horario de atención </option>
+  <option [value]="hora.id_hora" *ngFor="let hora of horas">{{hora.rango_horas}}   </option>
+</select></div>
+<button (click)="saveCita()">Guardar</button>
+</form>
+</app-modal-wrapper>
+</app-backdrop>
+<app-modal-update *ngIf="showModalUpdate" [cita]="citaCurrent" (citasCurrent)="actualizarCitas($event)"></app-modal-update>

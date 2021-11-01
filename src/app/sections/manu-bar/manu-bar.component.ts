@@ -11,28 +11,41 @@ import { ComunicateComponentsService } from '../../comunicate-components.service
 export class ManuBarComponent implements OnInit {
 	items: MenuItem[] = [];
 
-	userCurrent : string = '';
+	userCurrent: string = '';
 
-	constructor(private _comunication : ComunicateComponentsService) {}
+	constructor(private _comunication: ComunicateComponentsService) {}
 
 	ngOnInit(): void {
+		this.items = [
+			{
+				label: 'Home',
+				icon: 'pi pi-fw pi-pencil',
+				routerLink: '/',
+			},
+			{
+				label: 'Login',
+				routerLink: 'login',
+			},
+		];
 
-		this._comunication.onChangeUser().subscribe(user =>{
-			this.userCurrent = user.nombre + ' ' + user.apellidos;
-			console.log(this.userCurrent);
+		this._comunication.onChangeUser().subscribe((user : any) => {
+			
+			
+			this.userCurrent = user[0].nombre + ' ' + user[0].apellido;
+			// console.log(this.userCurrent);
 			this.items = [
 				{
 					label: 'Home',
 					icon: 'pi pi-fw pi-pencil',
-					routerLink: '/'
+					routerLink: '/',
 					// items: [
 					// 	{ label: 'Delete', icon: 'pi pi-fw pi-trash' },
 					// 	{ label: 'Refresh', icon: 'pi pi-fw pi-refresh' },
 					// ],
 				},
 				{
-					label: 'Login',
-					routerLink: 'login'
+					label: 'Log out',
+					routerLink: '/',
 					// items: [
 					// 	// {
 					// 	// 	label: 'New',
@@ -44,32 +57,20 @@ export class ManuBarComponent implements OnInit {
 					// ],
 				},
 				{
-					label: 'Bienvenido '+ this.userCurrent,
+					label: 'Bienvenido ' + this.userCurrent,
 					routerLink: '',
 					items: [
 						{
 							label: 'Mis citas',
 							icon: '',
-							routerLink: 'reservas'
+							routerLink: 'reservas',
 							// items: [{ label: 'Project' }, { label: 'Other' }],
 						},
 						{ label: 'Editar Perfil', routerLink: '' },
 						{ label: 'Salir', routerLink: '' },
 					],
 				},
-				
-				
 			];
 		});
-
-		
-		
-	
-		
-
-		
 	}
-
-	
-
 }

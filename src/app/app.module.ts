@@ -7,13 +7,15 @@ import { PagesModule } from './pages/pages.module';
 import { ROUTES } from './app.routing';
 import { SectionsModule } from './sections/sections.module';
 
+
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule, 
 		PagesModule, 
 		RouterModule.forRoot(ROUTES),
-		SectionsModule,
+		SectionsModule
+
 		
 	],
 	providers: [],

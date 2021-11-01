@@ -11,7 +11,7 @@ export class ComunicateComponentsService {
 
 	onChangeUser = () => this._userSbj.asObservable(); 
 
-	userCurrent(user : User) {
+	userCurrent(user : any) {
 		this._userSbj.next(user);
 	}
 }

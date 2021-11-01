@@ -9,12 +9,23 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { SectionsModule } from '../sections/sections.module';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule } from '@angular/router';
+import { CitasComponent } from './citas/citas.component';
+import { BackdropComponent } from './backdrop/backdrop.component';
+import { ModalWrapperComponent } from './modal-wrapper/modal-wrapper.component';
+import { ModalUpdateComponent } from './modal-update/modal-update.component';
 const LIST  =  [
 	LandingComponent,
 	ReservasComponent,
 	EditReserveComponent,
 	LoginComponent,
-	HomeComponent
+	HomeComponent,
+	DashboardComponent,
+	CitasComponent,
+	BackdropComponent,
+	ModalWrapperComponent,
+	ModalUpdateComponent
 	
 ];
 
@@ -24,7 +35,8 @@ const LIST  =  [
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		SectionsModule
+		SectionsModule,
+		RouterModule
 	],
 	declarations: LIST,
 	exports: LIST,
