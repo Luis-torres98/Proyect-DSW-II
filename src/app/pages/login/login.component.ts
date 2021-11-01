@@ -18,12 +18,31 @@ export class LoginComponent implements OnInit {
 	resultado = [];
 	password = false;
 
+	departamentos: any[] = [];
+	provincias: any[] = [];
+	distritos: any[] = [];
+
 	loginForm = new FormGroup({
 		usuario: new FormControl('', Validators.required),
 		password: new FormControl('', Validators.required),
 	});
 
-	constructor(private _elem: ElementRef, private srv: ServiceService, private router: Router, private _comunications: ComunicateComponentsService) {}
+	singUpForm = new FormGroup({
+		nombre: new FormControl('', Validators.required),
+		apellidos: new FormControl('', Validators.required),
+		fecha_nacimiento: new FormControl('', Validators.required),
+		celular: new FormControl('', Validators.required),
+		departamento: new FormControl('', Validators.required),
+		provincia: new FormControl('', Validators.required),
+		distrito: new FormControl('', Validators.required),
+		dni: new FormControl('', Validators.required),
+		contraseña: new FormControl('', Validators.required),
+		confirmarContraseña: new FormControl('', Validators.required),
+	});
+
+	constructor(private _elem: ElementRef, private loginSrv: ServiceService, private router: Router, private _comunications: ComunicateComponentsService) {
+		loginSrv.getDepartamento().subscribe(resp => (this.departamentos = resp));
+	}
 
 	ngOnInit(): void {}
 
@@ -52,39 +71,40 @@ export class LoginComponent implements OnInit {
 	}
 
 	onLogin(form: any) {
-		// this.srv.loginByEmail().subscribe(data => {
-
-		// 	data.forEach(user=>{
-		// 		if (user.username === this.loginForm.value.usuario
-		// 			&& user.password === this.loginForm.value.password ) {
-
-		// 			this._comunications.userCurrent(user);
-
-		// 			this.router.navigate(['home']);
-		// 			return
-
-		// 		}else{
-		// 			console.log("usuario incorrecto");
-		// 			this.password = true;
-		// 			return
-
-		// 		}
-
-		// 	})
-
-		// });
-
-		console.log(form);
-
-		this.srv.login(form).subscribe(resp => {
+		this.loginSrv.login(form).subscribe(resp => {
 			if (resp != '') {
 				this._comunications.userCurrent(resp);
 				this.router.navigate(['dashboard']);
-
 			} else {
 				this.password = true;
 				return;
 			}
 		});
+	}
+
+	registerUser() {
+		console.log(this.singUpForm.value);
+
+		this.loginSrv.loginRegister(this.singUpForm.value).subscribe(resp =>{})
+		this.singUp = false;
+		this.singIn = true;
+	}
+
+	obtenerDep(event : any){
+
+		this.loginSrv.getProvinciaById(event.target.value).subscribe(resp =>{ 
+			this.provincias = resp;
+		})
+
+		
+	}
+
+	obtenerProv(event : any){
+
+		this.loginSrv.getDistritoById(event.target.value).subscribe(resp =>{ 
+			this.distritos = resp;
+		})
+
+		
 	}
 }

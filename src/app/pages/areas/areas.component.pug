@@ -1,0 +1,36 @@
+.tabla.d-flex.justify-content-between
+	h1 Areas
+
+	button.btn.btn-primary( type="button", (click)="showAddCategoryModal()" ) Agregar Area
+
+.tabla
+	table.table.table-striped
+		thead
+			tr
+				th(scope='col') #
+				th(scope='col') Nombre Area
+				th(scope='col') 
+		tbody
+			tr(*ngFor="let area of areas")
+				th(scope='row') {{area.id_area}}
+				td {{area.nombre_area}}
+				td 
+					i.fas.fa-edit((click)="editArea(area)")
+					i.fas.fa-trash-alt((click)="deleteArea(area.id_area)")
+
+<app-backdrop *ngIf="showModal">			
+	<app-modal-wrapper title="Agregar Area">
+		<form action="" [formGroup]="formArea">
+			<div>
+				<label for="area_nombre">Nombre del area</label>
+				<input #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="nombre" />
+			</div>
+
+
+			<button (click)="saveArea()">Guardar</button>
+		</form>
+	</app-modal-wrapper>
+</app-backdrop>
+
+
+app-modal-update-areas(*ngIf="showModalUpdate", [area]="areaCurrent", (areaCurrent)="actualizarAreas($event)" )

@@ -1,0 +1,50 @@
+
+<div class="tabla d-flex justify-content-between">
+  <h1>Personal</h1>
+  <button class="btn btn-primary" type="button" (click)="showAddCategoryModal()">Agregar Personal</button>
+</div>
+<div class="tabla">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Area</th>
+        <th scope="col">Usuario</th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pers of personal">
+        <th scope="row">{{pers.id_personal}}</th>
+        <td>{{pers.categoria}}</td>
+        <td>{{pers.area.nombre_area}}</td>
+        <td>{{pers.usuario.nombre}} {{pers.usuario.apellidos}}</td>
+        <td> <i class="fas fa-edit" (click)="editCita(pers)"></i><i class="fas fa-trash-alt" (click)="deleteCita(pers.id_personal)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div><app-backdrop *ngIf="showModal">			
+<app-modal-wrapper title="Agregar Personal">
+<form action="" [formGroup]="formPersonal">
+<div>
+<label for="cita_comentario">Categoria</label>
+<input #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="categoria" />
+</div>
+<div>
+<label for="">Area</label>
+<select name="" formControlName="area">
+  <option value="">Seleccione Areas </option>
+  <option [value]="area.id_area" *ngFor="let area of areas">{{area.nombre_area}}   </option>
+</select></div>
+<div>
+<label for="">Usuario</label>
+<select name="" formControlName="usuario">
+  <option value="">Seleccione Usuario </option>
+  <option [value]="usuario.id_usuario" *ngFor="let usuario of usuarios">{{usuario.nombre}} {{usuario.apellidos}}   </option>
+</select></div>
+<button (click)="savePersonal()">Guardar</button>
+</form>
+</app-modal-wrapper>
+</app-backdrop>
+<app-modal-update-personal *ngIf="showModalUpdate" [personal]="personalCurrent" (citasCurrent)="actualizarCitas($event)"></app-modal-update-personal>

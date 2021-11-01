@@ -1,10 +1,12 @@
 import {  Routes } from "@angular/router";
+import { AreasComponent } from "./pages/areas/areas.component";
 import { CitasComponent } from "./pages/citas/citas.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { EditReserveComponent } from "./pages/edit-reserve/edit-reserve.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from "./pages/login/login.component";
+import { PersonalComponent } from "./pages/personal/personal.component";
 import { ReservasComponent } from "./pages/reservas/reservas.component";
 import { ReserveNowComponent } from './pages/reserve-now/reserve-now.component';
 
@@ -42,6 +44,14 @@ export const ROUTES : Routes =[
 			{
 				path: '',
 				component: CitasComponent
+			},
+			{
+				path:'areas',
+				component: AreasComponent
+			},
+			{
+				path:'personal',
+				component: PersonalComponent
 			}
 		]
 		

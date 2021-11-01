@@ -14,7 +14,7 @@ export class ServiceService {
 	
 	constructor(private _http: HttpClient) {}
 
-	loginByEmail():Observable<User[]>{
+	getUsuarios():Observable<User[]>{
 		let dir = `${this.url}/api/usuario`
 
 		return this._http.get<User[]>(dir);
@@ -28,6 +28,23 @@ export class ServiceService {
 			"contraseña": user.password
 		});
 	}
+
+	loginRegister(user : any) : Observable<User>{
+		let dir = `${this.url}/api/usuario`
+
+		return this._http.post(dir, {
+			"nombre": user.nombre ,
+			"apellidos": user.apellidos ,
+			"fechanacimiento": user.fecha_nacimiento ,
+			"celular": user.celular ,
+			"dni": user.dni ,
+			"contraseña": user.contraseña ,
+			"id_distrito": user.distrito ,
+		  });
+
+		 
+	}
+	
 
 	getCitas() : Observable <any[]>{
 		let dir = `${this.url}/api/cita`
@@ -49,10 +66,37 @@ export class ServiceService {
 		return this._http.get<any []>(dir);
 	}
 
+	
+
 	getHoras(): Observable<any[]>{
 		let dir = `${this.url}/api/hora`
 		return this._http.get<any []>(dir);
 	}
+
+	getPersonal(): Observable<any[]>{
+		let dir = `${this.url}/api/personal`
+		return this._http.get<any []>(dir);
+	}
+
+	getDepartamento(): Observable<any[]>{
+		let dir = `${this.url}/api/departamento`
+		return this._http.get<any []>(dir);
+	}
+
+	getProvinciaById(id : any): Observable<any[]>{
+		let dir = `${this.url}/api/provincia/xDepartamento/${id}`
+		return this._http.get<any []>(dir);
+	}
+
+	getDistritoById(id : any): Observable<any[]>{
+		let dir = `${this.url}/api/distrito/xProvincia/${id}`
+		return this._http.get<any []>(dir);
+	}
+
+
+
+
+
 
 	postCita(cita : any, date : Date) : Observable<any>{
 		let dir = `${this.url}/api/cita`
@@ -66,6 +110,25 @@ export class ServiceService {
 			"id_hora": cita.hora
 		  })
 	}
+
+	postArea(area : any) : Observable<any>{
+		let dir = `${this.url}/api/area`
+		return this._http.post<any>(dir,{
+			"nombre_area": area.nombre,
+			
+		  })
+	}
+
+	postPersonal(personal : any, date : Date) : Observable<any>{
+		let dir = `${this.url}/api/personal`
+		return this._http.post<any>(dir,{
+			"fecha_registro": date,
+			"categoria": personal.categoria,
+			"id_usuario": personal.usuario,
+			"id_area": personal.area
+		  })
+	}
+
 
 	putCita(cita : any, date : Date, id : string) : Observable<any>{
 		let dir = `${this.url}/api/cita/${id}`
@@ -81,9 +144,29 @@ export class ServiceService {
 
 	}
 
+	
+	putArea(id : any, nombre : any) : Observable<any>{
+		let dir = `${this.url}/api/area`
+		return this._http.put<any>(dir,{
+			"id_area": id, 
+			"nombre_area" : nombre
+		  })
+
+	}
+
+
 	deleteCita(id : string): Observable<any>{
 		let dir = `${this.url}/api/cita/${id}`
 		return this._http.delete<any>(dir);
 	}
 	
+	deleteArea(id : string): Observable<any>{
+		let dir = `${this.url}/api/area/${id}`
+		return this._http.delete<any>(dir);
+	}
+
+	deletePersonal(id : string): Observable<any>{
+		let dir = `${this.url}/api/personal/${id}`
+		return this._http.delete<any>(dir);
+	}
 }

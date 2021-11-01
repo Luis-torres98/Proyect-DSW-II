@@ -1,0 +1,11 @@
+<app-backdrop *ngIf="mostrarModal">			
+<app-modal-wrapper title="Actualizar area">
+<form action="" [formGroup]="formAreaUpdate">
+<div>
+<label for="cita_comentario">Nombre Area</label>
+<input  #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="nombre" />
+</div>
+<button (click)="saveCita()">Guardar</button>
+</form>
+</app-modal-wrapper>
+</app-backdrop>

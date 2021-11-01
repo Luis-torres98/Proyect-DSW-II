@@ -37,7 +37,8 @@ export class CitasComponent implements OnInit {
 			this.citas = resp;
 		});
 		this.subs.add(this.uiService.getShowModal().subscribe(show => (this.showModal = show)));
-		this.subsUpdate.add(this.uiService.getShowModal().subscribe(show => (this.showModalUpdate = show)));
+
+		this.subsUpdate.add(this.uiService.getShowModalUpdate().subscribe(show => (this.showModalUpdate = show)));
 
 		this._citasSrv.getAreas().subscribe(resp => {
 			this.areas = resp;

@@ -15,6 +15,10 @@ import { CitasComponent } from './citas/citas.component';
 import { BackdropComponent } from './backdrop/backdrop.component';
 import { ModalWrapperComponent } from './modal-wrapper/modal-wrapper.component';
 import { ModalUpdateComponent } from './modal-update/modal-update.component';
+import { AreasComponent } from './areas/areas.component';
+import { ModalUpdateAreasComponent } from './modal-update-areas/modal-update-areas.component';
+import { PersonalComponent } from './personal/personal.component';
+import { ModalUpdatePersonalComponent } from './modal-update-personal/modal-update-personal.component';
 const LIST  =  [
 	LandingComponent,
 	ReservasComponent,
@@ -25,7 +29,11 @@ const LIST  =  [
 	CitasComponent,
 	BackdropComponent,
 	ModalWrapperComponent,
-	ModalUpdateComponent
+	ModalUpdateComponent,
+	AreasComponent,
+	ModalUpdateAreasComponent,
+	PersonalComponent,
+	ModalUpdatePersonalComponent
 	
 ];
 
