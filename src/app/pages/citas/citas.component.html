@@ -72,3 +72,4 @@
 </app-modal-wrapper>
 </app-backdrop>
 <app-modal-update *ngIf="showModalUpdate" [cita]="citaCurrent" (citasCurrent)="actualizarCitas($event)"></app-modal-update>
+<app-spinner *ngIf="loanding"></app-spinner>

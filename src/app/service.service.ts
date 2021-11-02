@@ -154,6 +154,17 @@ export class ServiceService {
 
 	}
 
+	putPersonal(personal : any, date : Date, id : string) : Observable<any>{
+		let dir = `${this.url}/api/personal/${id}`
+		return this._http.put<any>(dir,{
+			"fecha_registro": date,
+			"categoria": personal.categoria,
+			"id_usuario": personal.usuario,
+			"id_area": personal.area
+		  })
+
+	}
+
 
 	deleteCita(id : string): Observable<any>{
 		let dir = `${this.url}/api/cita/${id}`

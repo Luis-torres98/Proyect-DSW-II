@@ -19,6 +19,7 @@ import { AreasComponent } from './areas/areas.component';
 import { ModalUpdateAreasComponent } from './modal-update-areas/modal-update-areas.component';
 import { PersonalComponent } from './personal/personal.component';
 import { ModalUpdatePersonalComponent } from './modal-update-personal/modal-update-personal.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 const LIST  =  [
 	LandingComponent,
 	ReservasComponent,
@@ -33,7 +34,8 @@ const LIST  =  [
 	AreasComponent,
 	ModalUpdateAreasComponent,
 	PersonalComponent,
-	ModalUpdatePersonalComponent
+	ModalUpdatePersonalComponent,
+	SpinnerComponent
 	
 ];
 

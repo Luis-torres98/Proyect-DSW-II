@@ -15,6 +15,8 @@ export class AreasComponent implements OnInit {
 	areaCurrent: any;
 	areas: any[] = [];
 
+	loanding = false;
+
 	subs = new Subscription();
 	subsUpdate = new Subscription();
 
@@ -26,18 +28,27 @@ export class AreasComponent implements OnInit {
 		this.subs.add(this.uiService.getShowModal().subscribe(show => (this.showModal = show)));
 
 		this.subsUpdate.add(this.uiService.getShowModalUpdate().subscribe(show => (this.showModalUpdate = show)));
-		_areaSrv.getAreas().subscribe(resp => (this.areas = resp));
+
+		this.loanding = true;
+
+		_areaSrv.getAreas().subscribe(resp => {
+			(this.areas = resp)
+			this.loanding = false;
+		});
+
 	}
 
 	ngOnInit(): void {}
 
 	saveArea() {
 		// console.log(this.formArea);
+		this.loanding = true;
 
 		this._areaSrv.postArea(this.formArea.value).subscribe(resp => {
 			this.areas.push(resp);
 		});
 		this.showModal = false;
+		this.loanding = false;
 	}
 	editArea(area: any) {
 		this.showModalUpdate = true;
@@ -56,7 +67,6 @@ export class AreasComponent implements OnInit {
 		this.uiService.setShowModal(true);
 	}
 	actualizarAreas(event: any) {
-
 		this.areas = event;
 	}
 }

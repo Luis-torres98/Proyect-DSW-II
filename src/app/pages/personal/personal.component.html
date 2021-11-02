@@ -20,7 +20,7 @@
         <td>{{pers.categoria}}</td>
         <td>{{pers.area.nombre_area}}</td>
         <td>{{pers.usuario.nombre}} {{pers.usuario.apellidos}}</td>
-        <td> <i class="fas fa-edit" (click)="editCita(pers)"></i><i class="fas fa-trash-alt" (click)="deleteCita(pers.id_personal)"></i></td>
+        <td> <i class="fas fa-edit" (click)="editPersonal(pers)"></i><i class="fas fa-trash-alt" (click)="deleteCita(pers.id_personal)"></i></td>
       </tr>
     </tbody>
   </table>
@@ -47,4 +47,5 @@
 </form>
 </app-modal-wrapper>
 </app-backdrop>
-<app-modal-update-personal *ngIf="showModalUpdate" [personal]="personalCurrent" (citasCurrent)="actualizarCitas($event)"></app-modal-update-personal>
+<app-modal-update-personal *ngIf="showModalUpdate" [personal]="personalCurrent" (personalCurrent)="actualizarCitas($event)"></app-modal-update-personal>
+<app-spinner *ngIf="loanding"></app-spinner>

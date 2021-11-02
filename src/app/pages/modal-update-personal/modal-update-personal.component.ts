@@ -11,7 +11,7 @@ import { UiService } from '../../ui.service';
 })
 export class ModalUpdatePersonalComponent implements OnInit {
 	@Input() personal: any = '';
-	@Output() areaCurrent = new EventEmitter();
+	@Output() personalCurrent = new EventEmitter();
 	subsUpdate = new Subscription();
 	showModalUpdate = true;
 
@@ -48,15 +48,15 @@ export class ModalUpdatePersonalComponent implements OnInit {
 	}
 
 	saveCita() {
-		// console.log(this.personal.id_area, this.formPersonalUpdate.value.categoria);
+		console.log(this.personal	, this.formPersonalUpdate.value);
 
-		// this._citasSrv.putArea(this.personal.id_area, this.formPersonalUpdate.value.nombre).subscribe(resp => {
-		// 	this.mostrarModal = false;
-		// 	this._citasSrv.getAreas().subscribe(resp =>{
+		this._personalSrv.putPersonal(this.formPersonalUpdate.value, this.date , this.personal.id_personal).subscribe(resp => {
+			this.mostrarModal = false;
+			this._personalSrv.getPersonal().subscribe(resp =>{
 
-		// 		this.areaCurrent.emit(resp);
+				this.personalCurrent.emit(resp);
 
-		// 	})
-		// });
+			})
+		});
 	}
 }

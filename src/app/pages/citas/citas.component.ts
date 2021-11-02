@@ -21,6 +21,8 @@ export class CitasComponent implements OnInit {
 	horas: any[] = [];
 	date = new Date();
 
+	loanding = false;
+
 	citaCurrent: any;
 
 	formCitas = new FormGroup({
@@ -33,8 +35,12 @@ export class CitasComponent implements OnInit {
 	});
 
 	constructor(private _citasSrv: ServiceService, private uiService: UiService) {
+		this.loanding = true;
+		
 		this._citasSrv.getCitas().subscribe(resp => {
 			this.citas = resp;
+			this.loanding = false;
+
 		});
 		this.subs.add(this.uiService.getShowModal().subscribe(show => (this.showModal = show)));
 
@@ -60,9 +66,13 @@ export class CitasComponent implements OnInit {
 		this.uiService.setShowModal(true);
 	}
 	saveCita() {
+		this.loanding = true
 		this._citasSrv.postCita(this.formCitas.value, this.date).subscribe(resp => {
 			this.citas.push(resp);
+
+
 		});
+		this.loanding = false
 
 		this.showModal = false;
 	}

@@ -19,7 +19,7 @@
 				td {{pers.area.nombre_area}}
 				td {{pers.usuario.nombre}} {{pers.usuario.apellidos}}
 				td 
-					i.fas.fa-edit((click)="editCita(pers)")
+					i.fas.fa-edit((click)="editPersonal(pers)")
 					i.fas.fa-trash-alt((click)="deleteCita(pers.id_personal)")
 
 <app-backdrop *ngIf="showModal">			
@@ -51,4 +51,6 @@
 </app-backdrop>
 
 
-app-modal-update-personal(*ngIf="showModalUpdate", [personal]="personalCurrent", (citasCurrent)="actualizarCitas($event)" )
+app-modal-update-personal(*ngIf="showModalUpdate", [personal]="personalCurrent", (personalCurrent)="actualizarCitas($event)" )
+
+app-spinner(*ngIf="loanding")

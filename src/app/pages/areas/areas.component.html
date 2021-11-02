@@ -32,3 +32,4 @@
 </app-modal-wrapper>
 </app-backdrop>
 <app-modal-update-areas *ngIf="showModalUpdate" [area]="areaCurrent" (areaCurrent)="actualizarAreas($event)"></app-modal-update-areas>
+<app-spinner *ngIf="loanding"></app-spinner>
