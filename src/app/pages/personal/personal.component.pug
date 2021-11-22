@@ -3,7 +3,7 @@
 
 	button.btn.btn-primary( type="button", (click)="showAddCategoryModal()" ) Agregar Personal
 
-.tabla
+.tabla.scroll
 	table.table.table-striped
 		thead
 			tr
@@ -42,8 +42,8 @@
 					option(value="") Seleccione Usuario 
 					option([value]="usuario.id_usuario", *ngFor="let usuario of usuarios") {{usuario.nombre}} {{usuario.apellidos}}   
 			</div>
-			
-		
+
+
 
 			<button (click)="savePersonal()">Guardar</button>
 		</form>

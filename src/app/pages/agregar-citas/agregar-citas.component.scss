@@ -1,15 +1,9 @@
-.tabla {
-    padding: 20px;
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+    padding-top: 25px;
 }
-td {
-    i {
-        font-size: 25px;
-        padding: 5px;
-        color: rgb(11, 119, 74);
-        cursor: pointer;
-    }
-}
-
 form div {
     display: flex;
     flex-direction: column;
@@ -20,17 +14,29 @@ form div:last-of-type {
     margin-bottom: 0;
 }
 
-form div label select {
+form div label {
     font-size: 16px;
     font-weight: 400;
     line-height: 100%;
     margin-bottom: 10px;
 }
 
+select {
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    font-weight: 100;
+    option {
+        background-color: darkcyan;
+        color: #fff;
+    }
+}
+
 form div input {
     background-color: #ededed;
     border: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     outline: none;
     padding: 14px 15px;

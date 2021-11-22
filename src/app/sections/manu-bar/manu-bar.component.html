@@ -1,2 +1,9 @@
 
-<p-menubar [model]="items"></p-menubar>
+<div class="navbar"> <img src="assets/logo__citas.png" alt="" (click)="navigate('/')">
+  <button (click)="navigate('login')" *ngIf="!userExiste"> Iniciar Sesión </button>
+  <div class="sesion__creada" [ngStyle]="userExiste ? null :  {'display':'none'}  "> 
+    <div class="user__picture"><i class="fas fa-user"></i></div>
+    <div class="user">{{userCurrent}}</div>
+    <button (click)="cerrarSesion('/')"> Cerrar Sesión </button>
+  </div>
+</div>

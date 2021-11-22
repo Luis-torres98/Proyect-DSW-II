@@ -3,15 +3,14 @@ import { Subject } from 'rxjs';
 import { User } from '../interfaces/IUser';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ComunicateComponentsService {
+    private _userSbj = new Subject<User>();
 
-	private _userSbj = new Subject<User>();
+    onChangeUser = () => this._userSbj.asObservable();
 
-	onChangeUser = () => this._userSbj.asObservable(); 
-
-	userCurrent(user : any) {
-		this._userSbj.next(user);
-	}
+    userCurrent(user: any) {
+        this._userSbj.next(user);
+    }
 }

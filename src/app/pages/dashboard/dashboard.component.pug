@@ -1,8 +1,8 @@
 .dashboard
-	.content
-		h1(routerLink="/dashboard") Citas
-		h1(routerLink="/dashboard/areas") Areas
-		h1(routerLink="/dashboard/personal") Personal
+    .content
+        h1( routerLinkActive="active-link" routerLink="/dashboard/citas") Citas
+        h1( routerLinkActive="active-link" routerLink="/dashboard/areas") Areas
+        h1( routerLinkActive="active-link" routerLink="/dashboard/personal") Personal
 
-	.content-center
-		router-outlet
+    .content-center.scroll
+        router-outlet

@@ -24,7 +24,7 @@
 				select#login.fadeIn.second(type='number' name='login' placeholder='Departamento' formControlName="departamento", (change)="obtenerDep($event)" )
 					option(value="") Seleccione Departamento
 					option([value]="departamento.id_departamento", *ngFor="let departamento of departamentos") {{departamento.nombre_departamento}}
-					
+
 				select#login.fadeIn.second(type='number' name='login' placeholder='Provincia' formControlName="provincia",  (change)="obtenerProv($event)" )
 					option(value="") Seleccione Provincia
 					option([value]="provincia.id_provincia" , *ngFor="let provincia of provincias") {{provincia.nombre_provincia}}
@@ -32,12 +32,11 @@
 				select#login.fadeIn.second(type='number' name='login' placeholder='Distrito' formControlName="distrito" )
 					option(value="") Seleccione Distrito 
 					option([value]="distrito.id_distrito",  *ngFor="let distrito of distritos") {{distrito.nombre_distrito}}
-				
-				
+
+
 				input#password.fadeIn.third(type='text' name='login' placeholder='DNI' formControlName="dni" maxLength="8" )
 				input#password.fadeIn.third(type='password' name='login' placeholder='Password' formControlName="contraseña" )
 				input#password.fadeIn.third(type='password' name='login' placeholder='Confirm password' formControlName="confirmarContraseña" )
 
 				input.fadeIn.fourth(type='submit' value='Sing In', (click)="registerUser()")
-			//- #formFooter
-			//- 	a.underlineHover(href='') Forgot Password?
+

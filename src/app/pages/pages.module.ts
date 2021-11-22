@@ -5,8 +5,8 @@ import { ReservasComponent } from './reservas/reservas.component';
 import { EditReserveComponent } from './edit-reserve/edit-reserve.component';
 import { LoginComponent } from './login/login.component';
 
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { SectionsModule } from '../sections/sections.module';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,35 +20,45 @@ import { ModalUpdateAreasComponent } from './modal-update-areas/modal-update-are
 import { PersonalComponent } from './personal/personal.component';
 import { ModalUpdatePersonalComponent } from './modal-update-personal/modal-update-personal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-const LIST  =  [
-	LandingComponent,
-	ReservasComponent,
-	EditReserveComponent,
-	LoginComponent,
-	HomeComponent,
-	DashboardComponent,
-	CitasComponent,
-	BackdropComponent,
-	ModalWrapperComponent,
-	ModalUpdateComponent,
-	AreasComponent,
-	ModalUpdateAreasComponent,
-	PersonalComponent,
-	ModalUpdatePersonalComponent,
-	SpinnerComponent
-	
+import { PrincipalComponent } from './principal/principal.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { AgregarCitasComponent } from './agregar-citas/agregar-citas.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
+const LIST = [
+    LandingComponent,
+    ReservasComponent,
+    EditReserveComponent,
+    LoginComponent,
+    HomeComponent,
+    DashboardComponent,
+    CitasComponent,
+    BackdropComponent,
+    ModalWrapperComponent,
+    ModalUpdateComponent,
+    AreasComponent,
+    ModalUpdateAreasComponent,
+    PersonalComponent,
+    ModalUpdatePersonalComponent,
+    SpinnerComponent,
+    PrincipalComponent,
+    AgregarCitasComponent,
+    PerfilComponent
 ];
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		HttpClientModule,
-		SectionsModule,
-		RouterModule
-	],
-	declarations: LIST,
-	exports: LIST,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SectionsModule,
+        RouterModule,
+        MatToolbarModule,
+        MatIconModule
+    ],
+    declarations: LIST,
+    exports: LIST
 })
 export class PagesModule {}
