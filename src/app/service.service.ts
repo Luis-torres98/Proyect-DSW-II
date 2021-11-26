@@ -168,6 +168,20 @@ export class ServiceService {
         });
     }
 
+    putUsuarioById(usuario: any, id: string): Observable<any> {
+        let dir = `${this.url}/api/usuario/${id}`;
+
+        return this._http.put<any>(dir, {
+            nombre: usuario.nombre,
+            apellidos: usuario.apellidos,
+            fechanacimiento: usuario.fecha_nacimiento,
+            celular: usuario.celular,
+            dni: usuario.dni,
+            contraseña: usuario.password,
+            id_distrito: usuario.distrito
+        });
+    }
+
     deleteCita(id: string): Observable<any> {
         let dir = `${this.url}/api/cita/${id}`;
         return this._http.delete<any>(dir);

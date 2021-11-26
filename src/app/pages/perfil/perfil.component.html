@@ -23,18 +23,18 @@
     </div>
     <div>
       <label>Contraseña</label>
-      <input type="text" formControlName="password" placeholder="Ingrese nueva contraseña">
+      <input type="text" formControlName="password">
     </div>
     <div>
       <label>Departamento</label>
-      <select formControlName="departamento">
+      <select #departamento formControlName="departamento" (change)="changeDepartamento(departamento.value)">
         <option value="">Seleccione </option>
         <option *ngFor="let dep of departamentos" [value]="dep.id_departamento">{{dep.nombre_departamento}}</option>
       </select>
     </div>
     <div>
       <label>Provincia</label>
-      <select formControlName="provincia">
+      <select #provincia formControlName="provincia" (change)="changeProvincia(provincia.value)">
         <option value="">Seleccione </option>
         <option *ngFor="let pro of provincias" [value]="pro.id_provincia">{{pro.nombre_provincia}}</option>
       </select>

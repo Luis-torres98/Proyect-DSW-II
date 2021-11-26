@@ -17,21 +17,21 @@ h1.content Mi Perfil
 			input(type="number" formControlName='dni')
 		div
 			label Contraseña
-			input(type='text' formControlName='password' placeholder="Ingrese nueva contraseña")
+			input(type='text' formControlName='password' )
 
 		div
 			label Departamento
-			select( formControlName='departamento')
+			select( #departamento formControlName='departamento', (change)="changeDepartamento(departamento.value)")
 				option(value='') Seleccione 
 				option(*ngFor="let dep of departamentos", [value]="dep.id_departamento") {{dep.nombre_departamento}}
 		div
 			label Provincia
-			select(formControlName='provincia')
+			select(#provincia, formControlName='provincia', (change)="changeProvincia(provincia.value)")
 				option(value='') Seleccione 
 				option(*ngFor="let pro of provincias", [value]="pro.id_provincia") {{pro.nombre_provincia}}
 		div
 			label Distriro
-			select(formControlName='distrito')
+			select( formControlName='distrito'  )
 				option(value='') Seleccione  
 				option(*ngFor="let dis of distrito", [value]="dis.id_distrito") {{dis.nombre_distrito}}
 

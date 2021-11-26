@@ -32,19 +32,19 @@ export class PerfilComponent implements OnInit {
     constructor(private _service: ServiceService) {
         let user: any = localStorage.getItem('userCurrent');
         this.usuario = JSON.parse(user);
-        _service.getDepartamento().subscribe(resp => {
-            this.departamentos = resp;
+
+        this.getDepartamento();
+        let { id_distrito, provincia } = this.usuario.distrito;
+        let {
+            id_provincia,
+            departamento: { id_departamento }
+        } = provincia;
+        this.formPerfil.patchValue({
+            departamento: id_departamento,
+            provincia: id_provincia,
+            distrito: id_distrito
         });
 
-        this.formPerfil.controls['departamento'].setValue(
-            this.usuario.distrito.provincia.departamento.id_departamento
-        );
-        this.formPerfil.controls['provincia'].setValue(
-            this.usuario.distrito.provincia.id_provincia
-        );
-        this.formPerfil.controls['distrito'].setValue(
-            this.usuario.distrito.id_distrito
-        );
         _service
             .getDepartamentoById(this.usuario.distrito.cod_departamento)
             .subscribe(resp => {
@@ -67,17 +67,72 @@ export class PerfilComponent implements OnInit {
         this.formPerfil.controls['dni'].setValue(this.usuario.dni);
     }
 
-    getProvincia(value: string) {
+    getDepartamento() {
+        this.provincias = [];
+        this._service.getDepartamento().subscribe(resp => {
+            this.departamentos = resp;
+        });
+    }
+    getProvincia(value: any) {
+        this.distrito = [];
+
         this._service.getProvinciaById(value).subscribe(resp => {
             this.provincias = resp;
         });
+
+        return this.provincias;
     }
 
-    getDistrito(value: string) {
-        this._service.getDistritoById(value).subscribe(resp => {
+    getDistrito(value: any) {
+        this._service.getDistritoById(value || value.value).subscribe(resp => {
             this.distrito = resp;
         });
     }
 
-    save() {}
+    changeDepartamento(value: string) {
+        this.distrito = [''];
+        this.getProvincia(value);
+    }
+
+    changeProvincia(value: any) {
+        this.distrito = [''];
+        this.getDistrito(value);
+    }
+
+    setDistrito(value: any) {
+        console.log(value);
+
+        // console.log(this.formPerfil.value);
+    }
+
+    save() {
+        console.log(this.usuario);
+
+        if (this.formPerfil.controls['password'].value === '') {
+            this.formPerfil.patchValue({
+                password: this.usuario.contraseña
+            });
+        }
+        if (this.formPerfil.valid) {
+            let {
+                nombre,
+                apellidos,
+                fecha_nacimiento,
+                celular,
+                dni,
+                password,
+                departamento,
+                provincia,
+                distrito
+            } = this.formPerfil.value;
+
+            // console.log(this.formPerfil.value);
+
+            this._service
+                .putUsuarioById(this.formPerfil.value, this.usuario.id_usuario)
+                .subscribe(resp => {
+                    console.log(resp);
+                });
+        }
+    }
 }
