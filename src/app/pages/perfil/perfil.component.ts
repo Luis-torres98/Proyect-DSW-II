@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
 
 @Component({
@@ -16,6 +18,9 @@ export class PerfilComponent implements OnInit {
     departamentos: any;
     provincias: any;
     distrito: any;
+    loanding: boolean = false;
+
+    psw: boolean = false;
 
     usuario: any;
     formPerfil = new FormGroup({
@@ -29,7 +34,10 @@ export class PerfilComponent implements OnInit {
         provincia: new FormControl('', Validators.required),
         distrito: new FormControl('', Validators.required)
     });
-    constructor(private _service: ServiceService) {
+    constructor(
+        private _service: ServiceService,
+        private _toastr: ToastrService
+    ) {
         let user: any = localStorage.getItem('userCurrent');
         this.usuario = JSON.parse(user);
 
@@ -99,39 +107,28 @@ export class PerfilComponent implements OnInit {
         this.getDistrito(value);
     }
 
-    setDistrito(value: any) {
-        console.log(value);
-
-        // console.log(this.formPerfil.value);
-    }
-
     save() {
-        console.log(this.usuario);
+        this.loanding = true;
 
         if (this.formPerfil.controls['password'].value === '') {
-            this.formPerfil.patchValue({
-                password: this.usuario.contraseña
-            });
+            this.loanding = false;
+
+            this.psw = true;
         }
         if (this.formPerfil.valid) {
-            let {
-                nombre,
-                apellidos,
-                fecha_nacimiento,
-                celular,
-                dni,
-                password,
-                departamento,
-                provincia,
-                distrito
-            } = this.formPerfil.value;
-
-            // console.log(this.formPerfil.value);
-
             this._service
                 .putUsuarioById(this.formPerfil.value, this.usuario.id_usuario)
                 .subscribe(resp => {
-                    console.log(resp);
+                    console.log('respuesta desde perfil', resp);
+
+                    localStorage.setItem('userCurrent', JSON.stringify(resp));
+
+                    this.loanding = false;
+                    this.psw = false;
+                    this._toastr.success(
+                        'Se actualizó sus datos',
+                        'Datos actualizados'
+                    );
                 });
         }
     }

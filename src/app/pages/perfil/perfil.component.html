@@ -24,6 +24,7 @@
     <div>
       <label>Contraseña</label>
       <input type="text" formControlName="password">
+      <p class="validate" *ngIf="psw">Confirmar contraseña o actualizar</p>
     </div>
     <div>
       <label>Departamento</label>
@@ -49,3 +50,4 @@
   </form>
   <button (click)="save()">Guardar</button>
 </h1>
+<app-spinner *ngIf="loanding"></app-spinner>

@@ -27,9 +27,6 @@ export class AgregarCitasComponent implements OnInit {
         this._citasSrv.getAreas().subscribe(resp => {
             this.areas = resp;
         });
-        this._citasSrv.getSede().subscribe(resp => {
-            this.sedes = resp;
-        });
         this._citasSrv.getPacientes().subscribe(resp => {
             this.pacientes = resp;
         });
@@ -38,7 +35,13 @@ export class AgregarCitasComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this._citasSrv.getSede().subscribe(resp => {
+            console.log(resp);
+
+            this.sedes = resp;
+        });
+    }
 
     saveCita() {
         this._citasSrv

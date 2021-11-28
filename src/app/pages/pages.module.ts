@@ -25,6 +25,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { AgregarCitasComponent } from './agregar-citas/agregar-citas.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { CitasUserComponent } from './citas user/citas-user.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserModule } from '@angular/platform-browser';
 
 const LIST = [
     LandingComponent,
@@ -44,7 +47,8 @@ const LIST = [
     SpinnerComponent,
     PrincipalComponent,
     AgregarCitasComponent,
-    PerfilComponent
+    PerfilComponent,
+    CitasUserComponent
 ];
 
 @NgModule({
@@ -56,7 +60,12 @@ const LIST = [
         SectionsModule,
         RouterModule,
         MatToolbarModule,
-        MatIconModule
+        MatIconModule,
+        BrowserModule,
+        ToastrModule.forRoot({
+            timeOut: 1000,
+            progressBar: true
+        })
     ],
     declarations: LIST,
     exports: LIST

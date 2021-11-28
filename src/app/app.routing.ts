@@ -12,6 +12,7 @@ import { ReservasComponent } from './pages/reservas/reservas.component';
 import { ReserveNowComponent } from './pages/reserve-now/reserve-now.component';
 import { AgregarCitasComponent } from './pages/agregar-citas/agregar-citas.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { CitasUserComponent } from './pages/citas user/citas-user.component';
 
 export const ROUTES: Routes = [
     {
@@ -40,7 +41,7 @@ export const ROUTES: Routes = [
             },
             {
                 path: 'mis-citas',
-                component: CitasComponent
+                component: CitasUserComponent
             }
         ]
     },

@@ -59,6 +59,10 @@ export class ServiceService {
         let dir = `${this.url}/api/cita`;
         return this._http.get<any[]>(dir);
     }
+    getCitasByIdUser(id: string): Observable<any[]> {
+        let dir = `${this.url}/api/cita/xIdUsuario/${id}`;
+        return this._http.get<any[]>(dir);
+    }
 
     getAreas(): Observable<any[]> {
         let dir = `${this.url}/api/area`;

@@ -18,6 +18,7 @@ h1.content Mi Perfil
 		div
 			label Contraseña
 			input(type='text' formControlName='password' )
+			p.validate(*ngIf="psw") Confirmar contraseña o actualizar
 
 		div
 			label Departamento
@@ -38,4 +39,8 @@ h1.content Mi Perfil
 
 	button((click)='save()') Guardar
 
+
+
 	//- p {{usuario | json}}
+
+app-spinner(*ngIf="loanding")

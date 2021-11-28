@@ -13,4 +13,12 @@ export class ComunicateComponentsService {
     userCurrent(user: any) {
         this._userSbj.next(user);
     }
+
+    private _activarSpinner = new Subject<boolean>();
+
+    onActivarSpiner = () => this._activarSpinner.asObservable();
+
+    changeActivarSpinner(status: boolean) {
+        this._activarSpinner.next(status);
+    }
 }

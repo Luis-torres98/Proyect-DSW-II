@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ComunicateComponentsService } from '../comunicate-components.service';
 
 @Injectable()
 export class InterceptorHttp implements HttpInterceptor {
@@ -16,6 +17,7 @@ export class InterceptorHttp implements HttpInterceptor {
         let request = this._requestToken(req);
 
         //TODO: intercepta las peticiones HTTP
+
         return next.handle(request);
     }
 

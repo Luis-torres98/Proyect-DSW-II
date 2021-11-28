@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { ROUTES } from './app.routing';
 import { SectionsModule } from './sections/sections.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorHttp } from './interceptor/InterceptorHttp';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,7 +21,11 @@ import { InterceptorHttp } from './interceptor/InterceptorHttp';
         RouterModule.forRoot(ROUTES),
         SectionsModule,
         BrowserAnimationsModule,
-        MatToolbarModule
+        MatToolbarModule,
+        ToastrModule.forRoot({
+            timeOut: 3000,
+            progressBar: true
+        })
     ],
     providers: [
         {

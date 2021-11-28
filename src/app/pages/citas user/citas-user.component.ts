@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/ui.service';
 import { ServiceService } from '../../service.service';
 
 @Component({
-    selector: 'app-citas',
-    templateUrl: './citas.component.html',
-    styleUrls: ['./citas.component.scss']
+    selector: 'app-citas-user',
+    templateUrl: './citas-user.component.html',
+    styleUrls: ['./citas-user.component.scss']
 })
-export class CitasComponent {
+export class CitasUserComponent {
     subs = new Subscription();
     subsUpdate = new Subscription();
     citas: any[] = [];
@@ -38,11 +37,14 @@ export class CitasComponent {
 
     constructor(
         private _citasSrv: ServiceService,
-        private uiService: UiService,
-        private _toastr: ToastrService
+        private uiService: UiService
     ) {
+        let user: any = localStorage.getItem('userCurrent');
+        const { id_usuario } = JSON.parse(user);
+
         this.loanding = true;
-        this._citasSrv.getCitas().subscribe(resp => {
+
+        this._citasSrv.getCitasByIdUser(id_usuario).subscribe(resp => {
             this.citas = resp;
             this.loanding = false;
         });
@@ -72,6 +74,12 @@ export class CitasComponent {
         });
     }
 
+    ngOnInit(): void {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        // debugger;
+        //Add 'implements OnInit' to the class.
+    }
+
     showAddCategoryModal() {
         this.uiService.setShowModal(true);
     }
@@ -81,11 +89,11 @@ export class CitasComponent {
             .postCita(this.formCitas.value, this.date)
             .subscribe(resp => {
                 // console.log('Lo que se guardo', resp);}
-                // this.citas.push(resp);
+
+                this.citas.push(resp);
+                // this.getCitas();
             });
-        this.getCitas();
-        this._toastr.success('Se agregó cita', 'Cita Registrada');
-        // this.loanding = false;
+        this.loanding = false;
 
         this.showModal = false;
     }
@@ -102,26 +110,15 @@ export class CitasComponent {
         this.showModalUpdate = true;
     }
     deleteCita(id: string) {
-        console.log('pasoooo');
-        this.loanding = true;
-
         this._citasSrv.deleteCita(id).subscribe(e => {
             let elem: any = this.citas.find((e: any) => e.id_cita === id);
             let index = this.citas.indexOf(elem);
             this.citas.splice(index, 1);
-            this.loanding = false;
-            this._toastr.success('Se elimino cita', 'Cita Eliminada');
-            console.log('terminooo');
         });
     }
 
     actualizarCitas(event: any) {
-        this.loanding = true;
-
         this.citas = event;
-
-        this.loanding = false;
-        this._toastr.success('Se actualizo cita', 'Cita actualizada');
     }
     ngOnDestroy() {
         this.subs.unsubscribe();
