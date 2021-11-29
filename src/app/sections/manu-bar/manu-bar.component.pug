@@ -1,0 +1,11 @@
+.navbar 
+	img(src="assets/logo__citas.png" alt="", (click)="navigate('/')")
+
+	button((click)="navigate('login')", *ngIf="!userExiste")  Iniciar Sesión 
+	.sesion__creada( [ngStyle]="userExiste ? null :  {'display':'none'}  " ) 
+		.user__picture
+			i.fas.fa-user
+		.user {{userCurrent}}
+		button((click)="cerrarSesion('/')")  Cerrar Sesión 
+
+

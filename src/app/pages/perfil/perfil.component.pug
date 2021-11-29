@@ -1,0 +1,43 @@
+h1.content Mi Perfil
+    form.contenedor( [formGroup]="formPerfil")
+        div
+            label Nombres
+            input(type='text' formControlName='nombre')
+        div
+            label Apellidos
+            input(type='text' formControlName='apellidos')
+        div
+            label Fecha de cita
+            input(type='date' formControlName='fecha_nacimiento')
+        div
+            label Celular
+            input(type="number" formControlName='celular')
+        div
+            label DNI
+            input(type="number" formControlName='dni')
+        div
+            label Contraseña
+            input(type='text' formControlName='password' )
+            p.validate(*ngIf="psw") Confirmar contraseña o actualizar
+
+        div
+            label Departamento
+            select( #departamento formControlName='departamento', (change)="changeDepartamento(departamento.value)")
+                option(value='') Seleccione 
+                option(*ngFor="let dep of departamentos", [value]="dep.id_departamento") {{dep.nombre_departamento}}
+        div
+            label Provincia
+            select(#provincia, formControlName='provincia', (change)="changeProvincia(provincia.value)")
+                option(value='') Seleccione 
+                option(*ngFor="let pro of provincias", [value]="pro.id_provincia") {{pro.nombre_provincia}}
+        div
+            label Distriro
+            select( formControlName='distrito'  )
+                option(value='') Seleccione  
+                option(*ngFor="let dis of distrito", [value]="dis.id_distrito") {{dis.nombre_distrito}}
+
+
+    button((click)='save()') Guardar
+
+
+app-spinner(*ngIf="loanding")

@@ -1,0 +1,43 @@
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 class="active underlineHover" (click)="signIn()"> Sign In </h2>
+    <h2 class="inactive underlineHover" (click)="signUp()">Sign Up </h2>
+    <div class="fadeIn first"></div>
+    <div *ngIf="singIn">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+        <input class="fadeIn second" id="login" type="text" formControlName="usuario" placeholder="login">
+        <input class="fadeIn third" id="password" type="password" formControlName="password" placeholder="password">
+        <input class="fadeIn fourth" type="submit" value="Log In">
+      </form>
+      <div *ngIf="password">
+        <p class="userPassword">Usuario o contraseña incorrectos</p>
+      </div>
+      <div id="formFooter"><a class="underlineHover" href="">Forgot Password?</a></div>
+    </div>
+    <div *ngIf="singUp">
+      <form [formGroup]="singUpForm">
+        <input class="fadeIn second" id="login" type="text" name="login" placeholder="Name" formControlName="nombre">
+        <input class="fadeIn second" id="login" type="text" name="login" placeholder="Last name" formControlName="apellidos">
+        <input class="fadeIn second" id="login" type="date" name="login" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento">
+        <input class="fadeIn second" id="login" type="number" name="login" placeholder="celular" formControlName="celular">
+        <select class="fadeIn second" id="login" type="number" name="login" placeholder="Departamento" formControlName="departamento" (change)="obtenerDep($event)">
+          <option value="">Seleccione Departamento</option>
+          <option [value]="departamento.id_departamento" *ngFor="let departamento of departamentos">{{departamento.nombre_departamento}}</option>
+        </select>
+        <select class="fadeIn second" id="login" type="number" name="login" placeholder="Provincia" formControlName="provincia" (change)="obtenerProv($event)">
+          <option value="">Seleccione Provincia</option>
+          <option [value]="provincia.id_provincia" *ngFor="let provincia of provincias">{{provincia.nombre_provincia}}</option>
+        </select>
+        <select class="fadeIn second" id="login" type="number" name="login" placeholder="Distrito" formControlName="distrito">
+          <option value="">Seleccione Distrito </option>
+          <option [value]="distrito.id_distrito" *ngFor="let distrito of distritos">{{distrito.nombre_distrito}}</option>
+        </select>
+        <input class="fadeIn third" id="password" type="text" name="login" placeholder="DNI" formControlName="dni" maxLength="8">
+        <input class="fadeIn third" id="password" type="password" name="login" placeholder="Password" formControlName="contraseña">
+        <input class="fadeIn third" id="password" type="password" name="login" placeholder="Confirm password" formControlName="confirmarContraseña">
+        <input class="fadeIn fourth" type="submit" value="Sing In" (click)="registerUser()">
+      </form>
+    </div>
+  </div>
+</div>

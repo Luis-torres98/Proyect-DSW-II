@@ -1,0 +1,49 @@
+
+
+<app-backdrop *ngIf="mostrarModal">			
+	<app-modal-wrapper title="Actualizar cita">
+		
+
+		<form action="" [formGroup]="formCitasUpdate">
+			<div>
+				<label for="cita_comentario">Comentario</label>
+				<input value="cita" #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="comentario" />
+			</div>
+
+			<div>
+				<label for="">Fecha de cita</label>
+				<input [value]="cita.fecha_cita" type="date" id=""  formControlName="fecha_cita"/>
+			</div>
+			<div>
+				<label for="">Sede</label>
+				select(name="" , formControlName="sede")
+					option(value="") Seleccione Sedes 
+					option([value]="sede.id_sede", *ngFor="let sede of sedes") {{sede.nombre_sede}}   
+			</div>
+			<div>
+				<label for="">Paciente</label>
+				select(name=""  formControlName="paciente")
+					option(value="") Seleccione Paciente 
+					option([value]="paciente.id_paciente", *ngFor="let paciente of pacientes") {{paciente.usuario.nombre}} {{paciente.usuario.apellidos}}   
+			</div>
+				<div>
+				<label for="">Area</label>
+				select(name="" formControlName="area")
+					option(value="") Seleccione Areas 
+					option([value]="area.id_area", *ngFor="let area of areas") {{area.nombre_area}}   
+			</div>
+				<div>
+				<label for="">Hora</label>
+				select(name="" formControlName="hora")
+					option(value="") Seleccione Horario de atención 
+					option([value]="hora.id_hora", *ngFor="let hora of horas") {{hora.rango_horas}}   
+			</div>
+
+			<button (click)="saveCita()">Guardar</button>
+		</form>
+	</app-modal-wrapper>
+</app-backdrop>
+
+
+
+

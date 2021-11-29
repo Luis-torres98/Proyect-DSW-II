@@ -1,0 +1,42 @@
+.wrapper.fadeInDown
+	#formContent
+		h2.active.underlineHover((click)="signIn()")  Sign In 
+		h2.inactive.underlineHover((click)="signUp()") Sign Up 
+		.fadeIn.first
+		div(*ngIf="singIn")
+			//- img#icon()
+			form([formGroup]="loginForm", (ngSubmit)="onLogin(loginForm.value)")
+				input#login.fadeIn.second(type='text' formControlName="usuario" placeholder='login')
+				input#password.fadeIn.third(type='password' formControlName="password" placeholder='password')
+				input.fadeIn.fourth(type='submit' value='Log In')
+			div(*ngIf="password")
+				p.userPassword Usuario o contraseña incorrectos
+			#formFooter
+				a.underlineHover(href='') Forgot Password?
+		div(*ngIf="singUp")
+			//- img#icon()
+			form([formGroup]="singUpForm")
+				input#login.fadeIn.second(type='text' name='login' placeholder='Name' formControlName="nombre" )
+				input#login.fadeIn.second(type='text' name='login' placeholder='Last name' formControlName="apellidos" )
+				input#login.fadeIn.second(type='date' name='login' placeholder='Fecha de nacimiento' formControlName="fecha_nacimiento" )
+				input#login.fadeIn.second(type='number' name='login' placeholder='celular' formControlName="celular" )
+
+				select#login.fadeIn.second(type='number' name='login' placeholder='Departamento' formControlName="departamento", (change)="obtenerDep($event)" )
+					option(value="") Seleccione Departamento
+					option([value]="departamento.id_departamento", *ngFor="let departamento of departamentos") {{departamento.nombre_departamento}}
+
+				select#login.fadeIn.second(type='number' name='login' placeholder='Provincia' formControlName="provincia",  (change)="obtenerProv($event)" )
+					option(value="") Seleccione Provincia
+					option([value]="provincia.id_provincia" , *ngFor="let provincia of provincias") {{provincia.nombre_provincia}}
+
+				select#login.fadeIn.second(type='number' name='login' placeholder='Distrito' formControlName="distrito" )
+					option(value="") Seleccione Distrito 
+					option([value]="distrito.id_distrito",  *ngFor="let distrito of distritos") {{distrito.nombre_distrito}}
+
+
+				input#password.fadeIn.third(type='text' name='login' placeholder='DNI' formControlName="dni" maxLength="8" )
+				input#password.fadeIn.third(type='password' name='login' placeholder='Password' formControlName="contraseña" )
+				input#password.fadeIn.third(type='password' name='login' placeholder='Confirm password' formControlName="confirmarContraseña" )
+
+				input.fadeIn.fourth(type='submit' value='Sing In', (click)="registerUser()")
+

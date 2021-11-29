@@ -1,0 +1,56 @@
+.tabla.d-flex.justify-content-between
+	h1 Personal
+
+	button.btn.btn-primary( type="button", (click)="showAddCategoryModal()" ) Agregar Personal
+
+.tabla.scroll
+	table.table.table-striped
+		thead
+			tr
+				th(scope='col') #
+				th(scope='col') Categoria
+				th(scope='col') Area
+				th(scope='col') Usuario
+				th(scope='col') 
+		tbody
+			tr(*ngFor="let pers of personal")
+				th(scope='row') {{pers.id_personal}}
+				td {{pers.categoria}}
+				td {{pers.area.nombre_area}}
+				td {{pers.usuario.nombre}} {{pers.usuario.apellidos}}
+				td 
+					i.fas.fa-edit((click)="editPersonal(pers)")
+					i.fas.fa-trash-alt((click)="deleteCita(pers.id_personal)")
+
+<app-backdrop *ngIf="showModal">			
+	<app-modal-wrapper title="Agregar Personal">
+		<form action="" [formGroup]="formPersonal">
+			<div>
+				<label for="cita_comentario">Categoria</label>
+				<input #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="categoria" />
+			</div>
+
+				<div>
+				<label for="">Area</label>
+				select(name="" formControlName="area")
+					option(value="") Seleccione Areas 
+					option([value]="area.id_area", *ngFor="let area of areas") {{area.nombre_area}}   
+			</div>
+			<div>
+				<label for="">Usuario</label>
+				select(name="" formControlName="usuario")
+					option(value="") Seleccione Usuario 
+					option([value]="usuario.id_usuario", *ngFor="let usuario of usuarios") {{usuario.nombre}} {{usuario.apellidos}}   
+			</div>
+
+
+
+			<button (click)="savePersonal()">Guardar</button>
+		</form>
+	</app-modal-wrapper>
+</app-backdrop>
+
+
+app-modal-update-personal(*ngIf="showModalUpdate", [personal]="personalCurrent", (personalCurrent)="actualizarCitas($event)" )
+
+app-spinner(*ngIf="loanding")

@@ -1,0 +1,65 @@
+.tabla{
+	padding: 20px;
+}
+td {
+	i{
+		font-size: 25px;
+		padding: 5px;
+		color: rgb(11, 119, 74);
+		cursor: pointer;
+	}
+}
+
+// Modal
+// app-modal-wrapper{
+// 	margin-top: 200px;
+// }
+
+form div {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+form div:last-of-type {
+	margin-bottom: 0;
+}
+
+form div label select {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 100%;
+	margin-bottom: 10px;
+}
+
+form div input {
+	background-color: #ededed;
+	border: none;
+	font-size: 18px;
+	font-weight: 500;
+	outline: none;
+	padding: 14px 15px;
+}
+
+form button {
+	background-color: #c4c4c4;
+	border: none;
+	color: #000000;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 100%;
+	margin-top: 30px;
+	outline: none;
+	padding: 14px 0;
+	text-align: center;
+	transition: all 0.15s ease;
+	width: 100%;
+
+	&:hover {
+		background-color: darken($color: #c4c4c4, $amount: 5);
+	}
+
+	&:active {
+		background-color: #c4c4c4;
+	}
+}
