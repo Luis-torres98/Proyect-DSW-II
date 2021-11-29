@@ -78,11 +78,14 @@ export class ServiceService {
         return this._http.get<any[]>(dir);
     }
 
+<<<<<<< HEAD
     getPacientesById(idUser: string): Observable<any[]> {
         let dir = `${this.url}/api/paciente/xIdUsuario/${idUser}`;
         return this._http.get<any[]>(dir);
     }
 
+=======
+>>>>>>> 6c9c74438ea5afe8b20150b09e5b554f8c5f29e1
     getHoras(): Observable<any[]> {
         let dir = `${this.url}/api/hora`;
         return this._http.get<any[]>(dir);
@@ -112,7 +115,11 @@ export class ServiceService {
         return this._http.get<any[]>(dir);
     }
 
+<<<<<<< HEAD
     postCita(cita: any, date: Date, paciente?: string): Observable<any> {
+=======
+    postCita(cita: any, date: Date): Observable<any> {
+>>>>>>> 6c9c74438ea5afe8b20150b09e5b554f8c5f29e1
         let dir = `${this.url}/api/cita`;
 
         console.log('Citas desde el servicio', cita);
@@ -122,7 +129,11 @@ export class ServiceService {
             comentario: cita.comentario,
             fecha_cita: cita.fecha_cita,
             id_sede: parseInt(cita.sede),
+<<<<<<< HEAD
             id_paciente: parseInt(cita.paciente || paciente),
+=======
+            id_paciente: parseInt(cita.paciente),
+>>>>>>> 6c9c74438ea5afe8b20150b09e5b554f8c5f29e1
             id_area: parseInt(cita.area),
             id_hora: parseInt(cita.hora)
         });

@@ -6,19 +6,10 @@
 <input #ComentarioInput appAutoFocus type="text" id="cita_comentario" formControlName="categoria" />
 </div>
 <div>
-<label for="">Area</label>
-<select name="" formControlName="area">
-  <option value="">Seleccione Areas </option>
-  <option [value]="area.id_area" *ngFor="let area of areas">{{area.nombre_area}}   </option>
-</select></div>
+<label for="">Area</label><select name="" formControlName="area"><option value="">Seleccione Areas </option><option [value]="area.id_area" *ngFor="let area of areas">{{area.nombre_area}}   </option></select></div>
 <div>
-<label for="">Usuario</label>
-<select name="" formControlName="usuario">
-  <option value="">Seleccione Usuario </option>
-  <option [value]="usuario.id_usuario" *ngFor="let usuario of usuarios">{{usuario.nombre}} {{usuario.apellidos}}   </option>
-</select></div>
+<label for="">Usuario</label><select name="" formControlName="usuario"><option value="">Seleccione Usuario </option><option [value]="usuario.id_usuario" *ngFor="let usuario of usuarios">{{usuario.nombre}} {{usuario.apellidos}}   </option></select></div>
 <button (click)="saveCita()">Guardar</button>
 </form>
 </app-modal-wrapper>
-</app-backdrop>
-<app-spinner *ngIf="loanding"></app-spinner>
+</app-backdrop><app-spinner *ngIf="loanding"></app-spinner>

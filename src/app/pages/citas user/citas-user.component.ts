@@ -48,7 +48,11 @@ export class CitasUserComponent {
 
         console.log('ID USUARIO', id_usuario);
 
+<<<<<<< HEAD
         this._citasSrv.getCitasByIdUser(`${id_usuario}`).subscribe(resp => {
+=======
+        this._citasSrv.getCitasByIdUser(`${33333333}`).subscribe(resp => {
+>>>>>>> 6c9c74438ea5afe8b20150b09e5b554f8c5f29e1
             this.citas = resp;
             console.log(resp);
 

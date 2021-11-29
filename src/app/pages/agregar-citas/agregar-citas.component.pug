@@ -15,12 +15,6 @@ h1 Agregar Cita
 				option(value="",  disabled) Seleccione Sedes 
 				option([value]="sede.id_sede", *ngFor="let sede of sedes") {{sede.nombre_sede}}   
 
-		//- div
-		//- 	label Paciente
-		//- 	select(name="" formControlName="paciente")
-		//- 		option(value="" disabled) Seleccione Paciente 
-		//- 		option([value]="paciente.id_paciente", *ngFor="let paciente of pacientes") {{paciente.usuario.nombre}} {{paciente.usuario.apellidos}}   
-
 		div
 			label Area
 			select(name="" formControlName="area")
