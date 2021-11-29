@@ -1,1 +1,35 @@
-<h1>Agregar Cita  <form class="contenedor" [formGroup]="formCitasUser"><div><label>Comentario</label><input type="text" formControlName="comentario"></div><div><label>Fecha de cita</label><input type="date" formControlName="fecha_cita"></div><div><label>Sede</label><select formControlName="sede"><option value="" disabled>Seleccione Sedes </option><option [value]="sede.id_sede" *ngFor="let sede of sedes">{{sede.nombre_sede}}   </option></select></div><div><label>Area</label><select name="" formControlName="area"><option value="" disabled>Seleccione Areas </option><option [value]="area.id_area" *ngFor="let area of areas">{{area.nombre_area}}   </option></select></div><div><label> Hora</label><select name="" formControlName="hora"><option value="" disabled>Seleccione Horario de atención </option><option [value]="hora.id_hora" *ngFor="let hora of horas">{{hora.rango_horas}}   </option></select></div><button (click)="saveCita()">Guardar</button></form></h1>
+
+<h1>Agregar Cita  
+  <form class="contenedor" [formGroup]="formCitasUser">
+    <div>
+      <label>Comentario</label>
+      <input type="text" formControlName="comentario">
+    </div>
+    <div>
+      <label>Fecha de cita</label>
+      <input type="date" formControlName="fecha_cita">
+    </div>
+    <div>
+      <label>Sede</label>
+      <select formControlName="sede">
+        <option value="" disabled>Seleccione Sedes </option>
+        <option [value]="sede.id_sede" *ngFor="let sede of sedes">{{sede.nombre_sede}}   </option>
+      </select>
+    </div>
+    <div>
+      <label>Area</label>
+      <select name="" formControlName="area">
+        <option value="" disabled>Seleccione Areas </option>
+        <option [value]="area.id_area" *ngFor="let area of areas">{{area.nombre_area}}   </option>
+      </select>
+    </div>
+    <div>
+      <label> Hora</label>
+      <select name="" formControlName="hora">
+        <option value="" disabled>Seleccione Horario de atención </option>
+        <option [value]="hora.id_hora" *ngFor="let hora of horas">{{hora.rango_horas}}   </option>
+      </select>
+    </div>
+  </form>
+  <button (click)="saveCita()">Guardar</button>
+</h1>
