@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/ui.service';
 import { ServiceService } from '../../service.service';
@@ -37,15 +38,20 @@ export class CitasUserComponent {
 
     constructor(
         private _citasSrv: ServiceService,
-        private uiService: UiService
+        private uiService: UiService,
+        private _toastr: ToastrService
     ) {
         let user: any = localStorage.getItem('userCurrent');
         const { id_usuario } = JSON.parse(user);
 
         this.loanding = true;
 
-        this._citasSrv.getCitasByIdUser(id_usuario).subscribe(resp => {
+        console.log('ID USUARIO', id_usuario);
+
+        this._citasSrv.getCitasByIdUser(`${33333333}`).subscribe(resp => {
             this.citas = resp;
+            console.log(resp);
+
             this.loanding = false;
         });
         this.subs.add(
@@ -74,11 +80,7 @@ export class CitasUserComponent {
         });
     }
 
-    ngOnInit(): void {
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        // debugger;
-        //Add 'implements OnInit' to the class.
-    }
+    ngOnInit(): void {}
 
     showAddCategoryModal() {
         this.uiService.setShowModal(true);
@@ -88,10 +90,12 @@ export class CitasUserComponent {
         this._citasSrv
             .postCita(this.formCitas.value, this.date)
             .subscribe(resp => {
-                // console.log('Lo que se guardo', resp);}
+                this.getCitas();
 
-                this.citas.push(resp);
-                // this.getCitas();
+                this._toastr.success(
+                    'Cita guardada satisfactoriamente',
+                    'Cita generada'
+                );
             });
         this.loanding = false;
 
@@ -114,11 +118,19 @@ export class CitasUserComponent {
             let elem: any = this.citas.find((e: any) => e.id_cita === id);
             let index = this.citas.indexOf(elem);
             this.citas.splice(index, 1);
+            this._toastr.success(
+                'Cita eliminada satisfactoriamente',
+                'Cita eliminada'
+            );
         });
     }
 
     actualizarCitas(event: any) {
         this.citas = event;
+        this._toastr.success(
+            'Cita actualizada satisfactoriamente',
+            'Cita actualizada'
+        );
     }
     ngOnDestroy() {
         this.subs.unsubscribe();

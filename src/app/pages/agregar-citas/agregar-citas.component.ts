@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ServiceService } from '../../service.service';
 
 @Component({
@@ -23,7 +24,11 @@ export class AgregarCitasComponent implements OnInit {
         area: new FormControl('', Validators.required),
         hora: new FormControl('', Validators.required)
     });
-    constructor(private _citasSrv: ServiceService, private _router: Router) {
+    constructor(
+        private _citasSrv: ServiceService,
+
+        private _toastr: ToastrService
+    ) {
         this._citasSrv.getAreas().subscribe(resp => {
             this.areas = resp;
         });
@@ -44,16 +49,23 @@ export class AgregarCitasComponent implements OnInit {
     }
 
     saveCita() {
-        this._citasSrv
-            .postCita(this.formCitasUser.value, this.date)
-            .subscribe(resp => {});
+        if (this.formCitasUser.valid) {
+            this._citasSrv
+                .postCita(this.formCitasUser.value, this.date)
+                .subscribe(resp => {
+                    console.log(resp);
+                    this._toastr.success(
+                        `Se guardo su cita para el ${resp.fecha_cita}`,
+                        'Cita gerenada'
+                    );
+                });
+        } else {
+            this._toastr.error(
+                `Asegurese de llenar todos los campos`,
+                'Formulario invalido'
+            );
+        }
 
-        this._router.navigate(['/index/mis-citas']);
+        // this._router.navigate(['/index/mis-citas']);
     }
-
-    editCita(cita: any) {}
-
-    deleteCita(id: string) {}
-
-    actualizarCitas(event: any) {}
 }
