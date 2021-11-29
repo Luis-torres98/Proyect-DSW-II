@@ -82,6 +82,17 @@ export class CitasUserComponent {
 
     ngOnInit(): void {}
 
+    getCitasUserId() {
+        let user: any = localStorage.getItem('userCurrent');
+        const { id_usuario } = JSON.parse(user);
+
+        this._citasSrv.getCitasByIdUser(`${id_usuario}`).subscribe(resp => {
+            this.citas = resp;
+            console.log(resp);
+
+            this.loanding = false;
+        });
+    }
     showAddCategoryModal() {
         this.uiService.setShowModal(true);
     }
@@ -103,10 +114,7 @@ export class CitasUserComponent {
     }
 
     getCitas() {
-        this._citasSrv.getCitas().subscribe(resp => {
-            this.citas = resp;
-            this.loanding = false;
-        });
+        this.getCitasUserId();
     }
     editCita(cita: any) {
         this.citaCurrent = cita;
