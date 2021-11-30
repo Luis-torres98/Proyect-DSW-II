@@ -81,11 +81,13 @@ export class ModalUpdateComponent implements OnInit {
     }
 
     saveCita() {
+        let user: any = localStorage.getItem('userCurrent');
+        const { id_usuario } = JSON.parse(user);
         this._citasSrv
             .putCita(this.formCitasUpdate.value, this.date, this.cita.id_cita)
             .subscribe(resp => {
                 this.mostrarModal = false;
-                this._citasSrv.getCitas().subscribe(resp => {
+                this._citasSrv.getCitasByIdUser(id_usuario).subscribe(resp => {
                     console.log(resp);
                     this.citasCurrent.emit(resp);
                 });
