@@ -26,6 +26,8 @@ export class CitasUserComponent {
 
     citaCurrent: any;
 
+    idUser: any = '';
+
     formCitas = new FormGroup({
         comentario: new FormControl('', Validators.required),
         fecha_cita: new FormControl('', Validators.required),
@@ -47,6 +49,8 @@ export class CitasUserComponent {
         this.loanding = true;
 
         console.log('ID USUARIO', id_usuario);
+
+        this.idUser = id_usuario;
 
         this._citasSrv.getCitasByIdUser(`${id_usuario}`).subscribe(resp => {
             this.citas = resp;
@@ -82,24 +86,13 @@ export class CitasUserComponent {
 
     ngOnInit(): void {}
 
-    getCitasUserId() {
-        let user: any = localStorage.getItem('userCurrent');
-        const { id_usuario } = JSON.parse(user);
-
-        this._citasSrv.getCitasByIdUser(`${id_usuario}`).subscribe(resp => {
-            this.citas = resp;
-            console.log(resp);
-
-            this.loanding = false;
-        });
-    }
     showAddCategoryModal() {
         this.uiService.setShowModal(true);
     }
     saveCita() {
         this.loanding = true;
         this._citasSrv
-            .postCita(this.formCitas.value, this.date)
+            .postCita(this.formCitas.value, this.date, this.idUser)
             .subscribe(resp => {
                 this.getCitas();
 
@@ -114,7 +107,12 @@ export class CitasUserComponent {
     }
 
     getCitas() {
-        this.getCitasUserId();
+        this._citasSrv.getCitasByIdUser(`${this.idUser}`).subscribe(resp => {
+            this.citas = resp;
+            console.log(resp);
+
+            this.loanding = false;
+        });
     }
     editCita(cita: any) {
         this.citaCurrent = cita;

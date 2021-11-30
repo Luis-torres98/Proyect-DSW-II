@@ -116,13 +116,13 @@ export class ServiceService {
         let dir = `${this.url}/api/cita`;
 
         console.log('Citas desde el servicio', cita);
-
+        debugger;
         return this._http.post<any>(dir, {
             fecha_registro: date,
             comentario: cita.comentario,
             fecha_cita: cita.fecha_cita,
             id_sede: parseInt(cita.sede),
-            id_paciente: parseInt(cita.paciente || paciente),
+            id_paciente: parseInt(cita.paciente || paciente || 10),
             id_area: parseInt(cita.area),
             id_hora: parseInt(cita.hora)
         });

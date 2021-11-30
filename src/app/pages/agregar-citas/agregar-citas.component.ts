@@ -34,6 +34,8 @@ export class AgregarCitasComponent implements OnInit {
         const { id_usuario } = JSON.parse(user);
 
         this._citasSrv.getPacientesById(id_usuario).subscribe((resp: any) => {
+            console.log(resp);
+
             this.paciente = resp[0].id_paciente;
             console.log('ID PACIENTE', this.paciente);
         });
