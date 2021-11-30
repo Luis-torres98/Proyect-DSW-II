@@ -1,4 +1,26 @@
-<div class="tabla d-flex justify-content-between"><h1>Areas</h1><button class="btn btn-primary" type="button" (click)="showAddCategoryModal()">Agregar Area</button></div><div class="tabla scroll"><table class="table table-striped" id="datatable"><thead><tr><th scope="col">#</th><th scope="col">Nombre Area</th><th scope="col"> </th></tr></thead><tbody><tr *ngFor="let area of areas"><th scope="row">{{area.id_area}}</th><td>{{area.nombre_area}}</td><td> <i class="fas fa-edit" (click)="editArea(area)"></i><i class="fas fa-trash-alt" (click)="deleteArea(area.id_area)"></i></td></tr></tbody></table></div><app-backdrop *ngIf="showModal">			
+
+<div class="tabla d-flex justify-content-between">
+  <h1>Areas</h1>
+  <button class="btn btn-primary" type="button" (click)="showAddCategoryModal()">Agregar Area</button>
+</div>
+<div class="tabla scroll">
+  <table class="table table-striped" id="datatable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre Area</th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let area of areas">
+        <th scope="row">{{area.id_area}}</th>
+        <td>{{area.nombre_area}}</td>
+        <td> <i class="fas fa-edit" (click)="editArea(area)"></i><i class="fas fa-trash-alt" (click)="deleteArea(area.id_area)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div><app-backdrop *ngIf="showModal">			
 <app-modal-wrapper title="Agregar Area">
 <form action="" [formGroup]="formArea">
 <div>
@@ -8,4 +30,6 @@
 <button (click)="saveArea()">Guardar</button>
 </form>
 </app-modal-wrapper>
-</app-backdrop><app-modal-update-areas *ngIf="showModalUpdate" [area]="areaCurrent" (areaCurrent)="actualizarAreas($event)"></app-modal-update-areas><app-spinner *ngIf="loanding"></app-spinner>
+</app-backdrop>
+<app-modal-update-areas *ngIf="showModalUpdate" [area]="areaCurrent" (areaCurrent)="actualizarAreas($event)"></app-modal-update-areas>
+<app-spinner *ngIf="loanding"></app-spinner>

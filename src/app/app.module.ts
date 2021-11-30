@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
         SectionsModule,
         BrowserAnimationsModule,
         MatToolbarModule,
+
         ToastrModule.forRoot({
             timeOut: 3000,
             progressBar: true

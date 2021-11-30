@@ -30,15 +30,6 @@ export class AgregarCitasComponent implements OnInit {
 
         private _toastr: ToastrService
     ) {
-        let user: any = localStorage.getItem('userCurrent');
-        const { id_usuario } = JSON.parse(user);
-
-        this._citasSrv.getPacientesById(id_usuario).subscribe((resp: any) => {
-            console.log(resp);
-
-            this.paciente = resp[0].id_paciente;
-            console.log('ID PACIENTE', this.paciente);
-        });
         this._citasSrv.getAreas().subscribe(resp => {
             this.areas = resp;
         });
@@ -51,10 +42,26 @@ export class AgregarCitasComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getPacienteById();
         this._citasSrv.getSede().subscribe(resp => {
             console.log(resp);
 
             this.sedes = resp;
+        });
+    }
+
+    getPacienteById() {
+        let user: any = localStorage.getItem('userCurrent');
+        const { id_usuario } = JSON.parse(user);
+        // this._citasSrv.getPacientesById(id_usuario).subscribe((resp: any) => {
+
+        //     console.log('USUARIOOOO', resp);
+        //     this.paciente = resp[0].id_paciente;
+        //     console.log('ID PACIENTE', this.paciente);
+        // });
+
+        this._citasSrv.getPacientesById('11').subscribe(resp => {
+            console.log(resp);
         });
     }
 

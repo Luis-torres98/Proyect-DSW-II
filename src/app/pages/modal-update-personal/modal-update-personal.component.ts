@@ -68,6 +68,8 @@ export class ModalUpdatePersonalComponent implements OnInit {
     }
 
     saveCita() {
+        let user: any = localStorage.getItem('userCurrent');
+        const { id_usuario } = JSON.parse(user);
         this.loanding = true;
 
         this._personalSrv
@@ -78,10 +80,12 @@ export class ModalUpdatePersonalComponent implements OnInit {
             )
             .subscribe(resp => {
                 // this.mostrarModal = false;
-                this._personalSrv.getPersonal().subscribe(resp => {
-                    this.personalCurrent.emit(resp);
-                    this.loanding = false;
-                });
+                this._personalSrv
+                    .getCitasByIdUser(id_usuario)
+                    .subscribe(resp => {
+                        this.personalCurrent.emit(resp);
+                        this.loanding = false;
+                    });
             });
     }
 }

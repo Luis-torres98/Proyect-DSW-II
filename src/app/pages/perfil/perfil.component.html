@@ -1,1 +1,53 @@
-<h1 class="content">Mi Perfil<form class="contenedor" [formGroup]="formPerfil"><div><label>Nombres</label><input type="text" formControlName="nombre"></div><div><label>Apellidos</label><input type="text" formControlName="apellidos"></div><div><label>Fecha de cita</label><input type="date" formControlName="fecha_nacimiento"></div><div><label>Celular</label><input type="number" formControlName="celular"></div><div><label>DNI</label><input type="number" formControlName="dni"></div><div><label>Contraseña</label><input type="text" formControlName="password"><p class="validate" *ngIf="psw">Confirmar contraseña o actualizar</p></div><div><label>Departamento</label><select #departamento formControlName="departamento" (change)="changeDepartamento(departamento.value)"><option value="">Seleccione </option><option *ngFor="let dep of departamentos" [value]="dep.id_departamento">{{dep.nombre_departamento}}</option></select></div><div><label>Provincia</label><select #provincia formControlName="provincia" (change)="changeProvincia(provincia.value)"><option value="">Seleccione </option><option *ngFor="let pro of provincias" [value]="pro.id_provincia">{{pro.nombre_provincia}}</option></select></div><div><label>Distriro</label><select formControlName="distrito"><option value="">Seleccione  </option><option *ngFor="let dis of distrito" [value]="dis.id_distrito">{{dis.nombre_distrito}}</option></select></div></form><button (click)="save()">Guardar</button></h1><app-spinner *ngIf="loanding"></app-spinner>
+
+<h1 class="content">Mi Perfil
+  <form class="contenedor" [formGroup]="formPerfil">
+    <div>
+      <label>Nombres</label>
+      <input type="text" formControlName="nombre">
+    </div>
+    <div>
+      <label>Apellidos</label>
+      <input type="text" formControlName="apellidos">
+    </div>
+    <div>
+      <label>Fecha de cita</label>
+      <input type="date" formControlName="fecha_nacimiento">
+    </div>
+    <div>
+      <label>Celular</label>
+      <input type="number" formControlName="celular">
+    </div>
+    <div>
+      <label>DNI</label>
+      <input type="number" formControlName="dni">
+    </div>
+    <div>
+      <label>Contraseña</label>
+      <input type="text" formControlName="password">
+      <p class="validate" *ngIf="psw">Confirmar contraseña o actualizar</p>
+    </div>
+    <div>
+      <label>Departamento</label>
+      <select #departamento formControlName="departamento" (change)="changeDepartamento(departamento.value)">
+        <option value="">Seleccione </option>
+        <option *ngFor="let dep of departamentos" [value]="dep.id_departamento">{{dep.nombre_departamento}}</option>
+      </select>
+    </div>
+    <div>
+      <label>Provincia</label>
+      <select #provincia formControlName="provincia" (change)="changeProvincia(provincia.value)">
+        <option value="">Seleccione </option>
+        <option *ngFor="let pro of provincias" [value]="pro.id_provincia">{{pro.nombre_provincia}}</option>
+      </select>
+    </div>
+    <div>
+      <label>Distriro</label>
+      <select formControlName="distrito">
+        <option value="">Seleccione  </option>
+        <option *ngFor="let dis of distrito" [value]="dis.id_distrito">{{dis.nombre_distrito}}</option>
+      </select>
+    </div>
+  </form>
+  <button (click)="save()">Guardar</button>
+</h1>
+<app-spinner *ngIf="loanding"></app-spinner>

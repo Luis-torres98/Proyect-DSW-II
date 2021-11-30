@@ -116,7 +116,7 @@ export class ServiceService {
         let dir = `${this.url}/api/cita`;
 
         console.log('Citas desde el servicio', cita);
-        debugger;
+
         return this._http.post<any>(dir, {
             fecha_registro: date,
             comentario: cita.comentario,
